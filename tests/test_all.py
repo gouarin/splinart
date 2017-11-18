@@ -17,6 +17,7 @@ def load_json(datadir, request):
     return datadir, tmp
 
 @pytest.mark.long
+@pytest.mark.skip(reason="display issue with matplotlib")
 def test_case(tmpdir, load_json):
 
     datadir, js = load_json

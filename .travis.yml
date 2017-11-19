@@ -15,6 +15,7 @@ os:
 - osx
 before_install:
 - mkdir $HOME/.matplotlib;
+- touch $HOME/.matplotlib/matplotlibrc
 - echo -e "backend : TkAgg" >> $HOME/.matplotlib/matplotlibrc
 - |
   if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then

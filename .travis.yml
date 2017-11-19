@@ -25,6 +25,11 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda info -a
+- conda install conda conda-build anaconda-client;
+- |
+  if [[ $TRAVIS_TAG ]]; then
+    conda install conda conda-build anaconda-client;
+  fi;
 - conda create -q -n splinart-env python=$PYVER
 - source activate splinart-env
 - travis_wait pip install -r requirements.txt
@@ -34,7 +39,6 @@ script:
 - pytest --cov=splinart tests
 - |
   if [[ $TRAVIS_TAG ]]; then
-    conda install conda conda-build anaconda-client;
     python setup.py sdist;
     conda build -q recipes &&
     conda install --use-local ${PROJECT_NAME} &&

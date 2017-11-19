@@ -25,6 +25,7 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
 - conda info -a
+- conda install conda-build anaconda-client;
 - |
   if [[ $TRAVIS_TAG ]]; then
     conda install conda-build anaconda-client;
@@ -38,7 +39,7 @@ script:
 - pytest --cov=splinart tests
 # to remove
 - python setup.py sdist
-- conda build -q --python ${PYVER} recipes
+- conda build --python ${PYVER} recipes
 - conda install --use-local ${PROJECT_NAME}
 - conda uninstall ${PROJECT_NAME}
 - anaconda -t $ANACONDA_TOKEN upload -u gouarin --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2

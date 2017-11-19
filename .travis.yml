@@ -9,7 +9,7 @@ env:
   - PROJECT_NAME=splinart
   - GITHUB_REPO_NAME=gouarin/splinart
   - secure: qZdQddtVkVpF/60at7mwQiIr7xVK5inETXwGZdCGg0wKeM9Qp0Ae7z6UjGOE+WLNt+QNCcR1tR4BVKlLZmvviMZFPyifdVpKs8GBsx77abaVWfAGOUtaP8HyLFA5/GEW+CJkrZnPWLiumMRE+XIfj6cH4iMBWkKGvHJ+p7YcOQJOUmqXv1S2fOP72bnRmQhwPXk807wNLumDf/MgnXTHx2twtQ/a6EV+z21fKbc8AzP7yoztoxyVw3AdmwOekFkQ+sT9t3AphptwOpuk9Kl18oUbhiDMGhIFdOFgwJS+yfc1cBycro8l50IQyKFYjKPdKrHY32TW6IvPPi7r4q6lEoCUMgJd42CuQrcLfundSoubMBgkxlc3Cv3cbAIzHrpav6yCWbOuiV/OEcVK+JMg5BXqwweOEvcnQq8SQWoK7A5YSXt7h4P5LNdelDl4ZNEs37L3SKsHdnfyXtlEWhFttd8gNYBJ7K9Fx3bF4tocUr5OFXkAMSW/T5jeH7sxJRh+eoAkbJJaxHkPpVnNDxX/U3W5KfwF9kiFEgOsSRuCcDmrTLBVY8Nt4Vy/z4lO+U4Mk7L/esUb1RCcNzVcBsh1l3PA5Hs/my02Qj9natcmORbv+htneKXXBZwCbohEQLSvqm148BCpGPI+eGozCGcc5MljQdZm1x/b6KiG2gg8C9g=
-  - secure: SahTt5k1jUkXkVTJpPeTsgD1OOKTM5cL7p8kSzRe/7admjrb7vTVDrEoZ2w29/QN6UUUa7zObwjQP2kIkEshAF2iOIqfLgN8GsK8GNYcmc4SB89EWx65kwkgjjuqfyjbso8Bmt0cgglr36EI/IcZgf50pDpn80cq6qYxaoogJti8pmPU6+tnZHqJZWswygdLhC+iKZfw3aqAGYSZTeTPdKGLNTEOq1RV1U0GDAQc7/s1n9x2l+amv8fnzuGfQd1hmEnA2G4v+ZLp0MoUaX5Vg6tabMQSZnqNaY0GTTlBLQK3mpsoOyzHNOhLxdFjL7w5W2thNl1hxeINve7bIceeXp9fbHONvevGDtA67C1egc/jPgcGQwJYg3dnkcR1jqtYZ/mmBP4ckvAYzTbUT4lTcwK5tzQw+dHJEEGfS1i76bQNEoImazSVSTy3YArd3EZeqrnHXOhXQSNYX1CZEdWV1FLmCowt5GhI7BRUkFc5uoISHdGPKmx3Jp9jjpQa2Ca7Rty4YVh1KgCV4TFC/M7VDgKWuC0bCxR5wk4lFjoGfmhyINjsNT9SRMIOUqryPG0E4F2MJaF6sLXWcWnZW3Vp0LZTM8MtuVdP3hI9K9FREHcsApVpZJCp6fDgX9liwgaU9UmBeUZCI0HAtMUKKwz+qb5qwxRkdM4827QUxrb/g7Y=
+  - secure: rq5AZYvsKuSwpHmbD+sq+tY1oC+qZapa430jrEuefdbhxGcCHDKs2vysbR6LSAHW8hylpW90sHsIbQ+CGpKfElSkTGV6YlPCr+x5Jvc8YdSLAfyLekxOaqUHTEoSBFo6uJvl57ufR1ovUKOQs9AHbWqNR7/HggNhi0WSdSIzZ2wbz9ubioqusxD6jlS/6sD4O1OSDO69J09rVTeiVS+xVzUaqkKeJbU2tB01+3TTlQZGpkZj+dZ70hOqkSuvRX1GBlWtIbmUxsktyjzu7uxH1s+3578Yf0Sulzujnz5XM4ZkcHJHt/mJ3FCzAFwPHrYd2LqBU/4K1BIvBV1m6+vwRQN/Bn7M7QU6sd9ENoNSGa+10QTS1gnlmk8DOK7o8J7MECxS4WYCWMtH5EW8RocDqxsQBVbKCOc2EtzC2XHGtHId4EMxKp/BXRHYP+vgTr8SBz+X0ErnR5ZyZkrDO8UwM2MmUaoL5uFah9rU172OdKbW2VmRLtdsaN++sOeGIhXZF2z7jFsLUhXPOBJc0JIl+dGSSo2eqtamWBYl7+hVDlaXq3Rql8sZyxtS5zVbIW2iLeIuShF47mF5eVpnX+41ccW5Myo2kDovRcw/Iwk47pBmP+e2d7dlhGVkw7adG0vpnIbHFNvkQmPhsQvw9mMYLrUaCFqf/e/AAMeJZm/49u0=
 os:
 - linux
 - osx
@@ -37,14 +37,13 @@ install:
 script:
 - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
 - pytest --cov=splinart tests
-# to remove
 - python setup.py sdist
 - conda install anaconda-client
 - conda config --set anaconda_upload no
 - conda build --python ${PYVER} recipes
 - conda install --use-local ${PROJECT_NAME}
 - conda uninstall ${PROJECT_NAME}
-- anaconda -v -t $ANACONDA_TOKEN upload -u gouarin -l main --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
+- anaconda -v -t $ANACONDA_TOKEN upload --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
 - |
   if [[ $TRAVIS_TAG ]]; then
     python setup.py sdist;
@@ -68,5 +67,5 @@ deploy:
   skip_cleanup: true
   script: anaconda -t $ANACONDA_TOKEN upload -u gouarin --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
   on:
-    repo: ${GITHUB_REPO_NAME}
+    repo: "${GITHUB_REPO_NAME}"
     tags: true

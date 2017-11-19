@@ -27,7 +27,7 @@ name = "splinart"
 
 MAJOR = 0
 MINOR = 1
-MAINTENANCE = 6
+MAINTENANCE = 7
 VERSION = "{}.{}.{}".format(MAJOR, MINOR, MAINTENANCE)
 
 with open("splinart/version.py", "w") as f:

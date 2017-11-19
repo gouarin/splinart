@@ -31,9 +31,12 @@ install:
   - conda create -q -n splinart-env python=$PYVER
   - source activate splinart-env
   - travis_wait pip install -r requirements.txt
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then conda install python.app; fi;
   - python setup.py install
 
 script:
   # Your test script goes here
-  - pytest tests
+  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
+  - pytest --cov=splpinart tests
+
+after_success:
+  - codecov -e $PYVER

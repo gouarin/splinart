@@ -1,42 +1,50 @@
 language: generic
 env:
+  matrix:
   - PYVER="2.7"
   - PYVER="3.4"
   - PYVER="3.5"
   - PYVER="3.6"
+  global:
+    - secure: V8kEoPFK/K4IKRiVKJBLhHipwwBPke1LaMpuVOgPuSSg1SgPW/oXLL9iI9XeD5XAyiPrPVJCuPRMpzxs6xJ5nIrJAtnjJy7X3Qat0iHVe8jiZ72IDc+BgQczXqDp0pqwg87Z+9sjfKqfpq7ZA3+/WdowbE3Gow4ZtY82Ceq5NQq7IyAGDlnoGWqXjmsXo0dPOoWM6sNtyjZJfCDYgF6XTBMbP3nWO6/oJXi7V9AP3+/rxGANgLtLdUs6hfdODb7DBb7Mgk+mkIqii1Xx729GxgUE0FsXtwxNpch3AUiLIsuDJgOUQVczQ+ik5g+ox2nLca57RRyvczYE6eG9GEdlVYiT4Iq+s4Nz/Kz1CQh7CpGvGNQbCOAWYAh+5okS/icEuHMDCfgxSdPRzb+Pxf0rV9z3mZoOlAXdGgLToWr+z3pDAQTJiBAODn/FEn2ZI8Y/MQLxQVZ0wD8X1JxRo8r4lwMeP3FCk/yRFNbbVqVpmnuWA3ze1XJTJCggyms+arKJvgI1myom6jt5EQk3THgklVW2Y7Zl2g23P0q6h7OCnoyL6ZLrD1Iexj3zfYwHQDefOR0aB185f+NK6l+AhToHW1j+QEcKp+IqD7xCpedDTdgr71gKVTxaR4Dx4C791KC+iRI/oZr2EZfZsuGUhtfBBj350JW4DDTN86OVAx8rdes=
+    - PROJECT_NAME=splinart
+    - GITHUB_REPO_NAME=gouarin/splinart
 os:
-  - linux
-  - osx
-
+- linux
+- osx
 before_install:
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
-      mkdir $HOME/.matplotlib;
-      echo "backend : TkAgg" >> $HOME/.matplotlib/matplotlibrc
-    fi
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 
-      sudo apt-get update;
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
+- "if [[ \"$TRAVIS_OS_NAME\" == \"osx\" ]]; then \n  wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+  -O miniconda.sh;\n  mkdir $HOME/.matplotlib;\n  echo \"backend : TkAgg\" >> $HOME/.matplotlib/matplotlibrc\nfi\n"
+- "if [[ \"$TRAVIS_OS_NAME\" == \"linux\" ]]; then \n  sudo apt-get update;\n  wget
+  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;\nfi\n"
 install:
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-  - conda create -q -n splinart-env python=$PYVER
-  - source activate splinart-env
-  - travis_wait pip install -r requirements.txt
-  - python setup.py install
-
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
+- conda create -q -n splinart-env python=$PYVER
+- source activate splinart-env
+- travis_wait pip install -r requirements.txt
+- python setup.py install
 script:
-  # Your test script goes here
-  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
-  - pytest --cov=splinart tests
-
+- pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
+- pytest --cov=splinart tests
+-|
+  if [[ $TRAVIS_TAG ]]; then
+    python setup.py sdist;
+  fi
 after_success:
-  - codecov -e $PYVER
+- codecov -e $PYVER
+
+deploy:
+- provider: releases
+  skip_cleanup: true
+  api_key: ${GITHUB_TOKEN}
+  file: dist/${PROJECT_NAME}-${TRAVIS_TAG}.tar.gz
+  on:
+    repo: ${GITHUB_REPO_NAME}
+    tags: true
+    condition: "$PYVER == 2.7 && $TRAVIS_OS_NAME == linux"
+  prerelease: false

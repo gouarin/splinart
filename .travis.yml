@@ -13,7 +13,7 @@ install:
 
   - conda create -q -n splinart-env python=$TRAVIS_PYTHON_VERSION
   - source activate splinart-env
-  - conda install numpy matplotlib six pytest
+  - travis_wait pip install -r requirements.txt
   - python setup.py install
 
 script:

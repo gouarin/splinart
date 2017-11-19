@@ -6,7 +6,6 @@ env:
   - PYVER="3.5"
   - PYVER="3.6"
   global:
-  - secure: V8kEoPFK/K4IKRiVKJBLhHipwwBPke1LaMpuVOgPuSSg1SgPW/oXLL9iI9XeD5XAyiPrPVJCuPRMpzxs6xJ5nIrJAtnjJy7X3Qat0iHVe8jiZ72IDc+BgQczXqDp0pqwg87Z+9sjfKqfpq7ZA3+/WdowbE3Gow4ZtY82Ceq5NQq7IyAGDlnoGWqXjmsXo0dPOoWM6sNtyjZJfCDYgF6XTBMbP3nWO6/oJXi7V9AP3+/rxGANgLtLdUs6hfdODb7DBb7Mgk+mkIqii1Xx729GxgUE0FsXtwxNpch3AUiLIsuDJgOUQVczQ+ik5g+ox2nLca57RRyvczYE6eG9GEdlVYiT4Iq+s4Nz/Kz1CQh7CpGvGNQbCOAWYAh+5okS/icEuHMDCfgxSdPRzb+Pxf0rV9z3mZoOlAXdGgLToWr+z3pDAQTJiBAODn/FEn2ZI8Y/MQLxQVZ0wD8X1JxRo8r4lwMeP3FCk/yRFNbbVqVpmnuWA3ze1XJTJCggyms+arKJvgI1myom6jt5EQk3THgklVW2Y7Zl2g23P0q6h7OCnoyL6ZLrD1Iexj3zfYwHQDefOR0aB185f+NK6l+AhToHW1j+QEcKp+IqD7xCpedDTdgr71gKVTxaR4Dx4C791KC+iRI/oZr2EZfZsuGUhtfBBj350JW4DDTN86OVAx8rdes=
   - PROJECT_NAME=splinart
   - GITHUB_REPO_NAME=gouarin/splinart
   - secure: qZdQddtVkVpF/60at7mwQiIr7xVK5inETXwGZdCGg0wKeM9Qp0Ae7z6UjGOE+WLNt+QNCcR1tR4BVKlLZmvviMZFPyifdVpKs8GBsx77abaVWfAGOUtaP8HyLFA5/GEW+CJkrZnPWLiumMRE+XIfj6cH4iMBWkKGvHJ+p7YcOQJOUmqXv1S2fOP72bnRmQhwPXk807wNLumDf/MgnXTHx2twtQ/a6EV+z21fKbc8AzP7yoztoxyVw3AdmwOekFkQ+sT9t3AphptwOpuk9Kl18oUbhiDMGhIFdOFgwJS+yfc1cBycro8l50IQyKFYjKPdKrHY32TW6IvPPi7r4q6lEoCUMgJd42CuQrcLfundSoubMBgkxlc3Cv3cbAIzHrpav6yCWbOuiV/OEcVK+JMg5BXqwweOEvcnQq8SQWoK7A5YSXt7h4P5LNdelDl4ZNEs37L3SKsHdnfyXtlEWhFttd8gNYBJ7K9Fx3bF4tocUr5OFXkAMSW/T5jeH7sxJRh+eoAkbJJaxHkPpVnNDxX/U3W5KfwF9kiFEgOsSRuCcDmrTLBVY8Nt4Vy/z4lO+U4Mk7L/esUb1RCcNzVcBsh1l3PA5Hs/my02Qj9natcmORbv+htneKXXBZwCbohEQLSvqm148BCpGPI+eGozCGcc5MljQdZm1x/b6KiG2gg8C9g=
@@ -55,7 +54,7 @@ deploy:
     condition: "$PYVER == 2.7 && $TRAVIS_OS_NAME == linux"
 - provider: script
   skip_cleanup: true
-  script: anaconda -t $ANACONDA_TOKEN upload --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
+  script: anaconda -t $ANACONDA_TOKEN upload -u gouarin --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
   on:
     repo: ${GITHUB_REPO_NAME}
     tags: true

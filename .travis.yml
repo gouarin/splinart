@@ -14,11 +14,11 @@ os:
 - linux
 - osx
 before_install:
+- mkdir $HOME/.matplotlib;
+- echo "backend : TkAgg" >> $HOME/.matplotlib/matplotlibrc
 - |
   if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
-    mkdir $HOME/.matplotlib;
-    echo "backend : TkAgg" >> $HOME/.matplotlib/matplotlibrc
   fi
 - |
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 

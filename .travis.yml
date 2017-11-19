@@ -10,6 +10,7 @@ env:
   - PROJECT_NAME=splinart
   - GITHUB_REPO_NAME=gouarin/splinart
   - secure: qZdQddtVkVpF/60at7mwQiIr7xVK5inETXwGZdCGg0wKeM9Qp0Ae7z6UjGOE+WLNt+QNCcR1tR4BVKlLZmvviMZFPyifdVpKs8GBsx77abaVWfAGOUtaP8HyLFA5/GEW+CJkrZnPWLiumMRE+XIfj6cH4iMBWkKGvHJ+p7YcOQJOUmqXv1S2fOP72bnRmQhwPXk807wNLumDf/MgnXTHx2twtQ/a6EV+z21fKbc8AzP7yoztoxyVw3AdmwOekFkQ+sT9t3AphptwOpuk9Kl18oUbhiDMGhIFdOFgwJS+yfc1cBycro8l50IQyKFYjKPdKrHY32TW6IvPPi7r4q6lEoCUMgJd42CuQrcLfundSoubMBgkxlc3Cv3cbAIzHrpav6yCWbOuiV/OEcVK+JMg5BXqwweOEvcnQq8SQWoK7A5YSXt7h4P5LNdelDl4ZNEs37L3SKsHdnfyXtlEWhFttd8gNYBJ7K9Fx3bF4tocUr5OFXkAMSW/T5jeH7sxJRh+eoAkbJJaxHkPpVnNDxX/U3W5KfwF9kiFEgOsSRuCcDmrTLBVY8Nt4Vy/z4lO+U4Mk7L/esUb1RCcNzVcBsh1l3PA5Hs/my02Qj9natcmORbv+htneKXXBZwCbohEQLSvqm148BCpGPI+eGozCGcc5MljQdZm1x/b6KiG2gg8C9g=
+  - secure: SahTt5k1jUkXkVTJpPeTsgD1OOKTM5cL7p8kSzRe/7admjrb7vTVDrEoZ2w29/QN6UUUa7zObwjQP2kIkEshAF2iOIqfLgN8GsK8GNYcmc4SB89EWx65kwkgjjuqfyjbso8Bmt0cgglr36EI/IcZgf50pDpn80cq6qYxaoogJti8pmPU6+tnZHqJZWswygdLhC+iKZfw3aqAGYSZTeTPdKGLNTEOq1RV1U0GDAQc7/s1n9x2l+amv8fnzuGfQd1hmEnA2G4v+ZLp0MoUaX5Vg6tabMQSZnqNaY0GTTlBLQK3mpsoOyzHNOhLxdFjL7w5W2thNl1hxeINve7bIceeXp9fbHONvevGDtA67C1egc/jPgcGQwJYg3dnkcR1jqtYZ/mmBP4ckvAYzTbUT4lTcwK5tzQw+dHJEEGfS1i76bQNEoImazSVSTy3YArd3EZeqrnHXOhXQSNYX1CZEdWV1FLmCowt5GhI7BRUkFc5uoISHdGPKmx3Jp9jjpQa2Ca7Rty4YVh1KgCV4TFC/M7VDgKWuC0bCxR5wk4lFjoGfmhyINjsNT9SRMIOUqryPG0E4F2MJaF6sLXWcWnZW3Vp0LZTM8MtuVdP3hI9K9FREHcsApVpZJCp6fDgX9liwgaU9UmBeUZCI0HAtMUKKwz+qb5qwxRkdM4827QUxrb/g7Y=
 os:
 - linux
 - osx
@@ -34,7 +35,11 @@ script:
 - pytest --cov=splinart tests
 - |
   if [[ $TRAVIS_TAG ]]; then
+    conda install conda conda-build anaconda-client;
     python setup.py sdist;
+    conda build -q recipes &&
+    conda install --use-local ${PROJECT_NAME} &&
+    conda uninstall ${PROJECT_NAME};
   fi
 after_success:
 - codecov -e $PYVER
@@ -42,9 +47,15 @@ deploy:
 - provider: pypi
   skip_cleanup: true
   user: gouarin
-  password: ${PYPI_PASSWD}
+  password: "${PYPI_PASSWD}"
   server: https://test.pypi.org/legacy/
+  on:
+    repo: "${GITHUB_REPO_NAME}"
+    tags: true
+    condition: "$PYVER == 2.7 && $TRAVIS_OS_NAME == linux"
+- provider: script
+  skip_cleanup: true
+  script: anaconda -t $ANACONDA_TOKEN upload --force ${HOME}/miniconda/conda-bld/*/${PROJECT_NAME}-*.tar.bz2
   on:
     repo: ${GITHUB_REPO_NAME}
     tags: true
-    condition: "$PYVER == 2.7 && $TRAVIS_OS_NAME == linux"

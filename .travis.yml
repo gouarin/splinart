@@ -43,7 +43,7 @@ deploy:
   skip_cleanup: true
   user: gouarin
   password: ${PYPI_PASSWD}
-  server: https://testpypi.python.org/pypi
+  server: https://test.pypi.org/legacy/
   on:
     repo: ${GITHUB_REPO_NAME}
     tags: true

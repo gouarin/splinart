@@ -1,4 +1,4 @@
-language: python
+language: generic
 env:
   - PYVER="2.7"
   - PYVER="3.4"

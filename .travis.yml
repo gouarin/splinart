@@ -36,7 +36,7 @@ install:
 script:
   # Your test script goes here
   - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
-  - pytest --cov=splpinart tests
+  - pytest --cov=splinart tests
 
 after_success:
   - codecov -e $PYVER

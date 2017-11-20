@@ -1,0 +1,6 @@
+name: splinart
+channels:
+  - gouarin
+dependencies:
+  - python=3.6
+  - splinart

@@ -1,4 +1,4 @@
- |pypi| |conda| |travis| |appveyor| |codecov|
+ |conda| |travis| |appveyor| |codecov|
 
 splinart is a package used for a tutorial which explains how to do the Python packaging using
 
@@ -20,9 +20,6 @@ or::
 
     conda install -c gouarin splinart
 
-
-.. |pypi| image:: https://img.shields.io/pypi/v/nine.svg
-   :target: https://testpypi.python.org/pypi/splinart
  
 .. |conda| image:: https://anaconda.org/gouarin/splinart/badges/version.svg
    :target: https://anaconda.org/gouarin/splinart

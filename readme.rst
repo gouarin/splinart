@@ -1,4 +1,4 @@
- |binder| |conda| |travis| |appveyor| |codecov|
+ |binder| |RTD| |conda| |travis| |appveyor| |codecov|
 
 splinart is a package used for a tutorial which explains how to do the Python packaging using
 

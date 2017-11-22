@@ -8,7 +8,10 @@ splinart is a package used for a tutorial which explains how to do the Python pa
 
 And automate the process to distribute this package using github.
 
-The original idea of splinart is found on the great invonvergent website.
+The original idea of splinart is found on the great `invonvergent < website.
+
+.. image:: https://github.com/gouarin/splinart/demos/output/circles.png
+.. image:: https://github.com/gouarin/splinart/demos/output/lines.png
 
 If you want to install splinart::
 

@@ -42,7 +42,7 @@ install:
 - python setup.py install
 script:
 - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
-- pytest --cov=splinart tests
+- cd tests;pytest --cov=splinart
 - |
   if [[ $TRAVIS_TAG ]]; then
     python setup.py sdist;

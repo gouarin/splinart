@@ -12,8 +12,8 @@ And automate the process to distribute this package using github.
 
 The original idea of splinart is found on the great `invonvergent < website.
 
-.. image:: https://github.com/gouarin/splinart/demos/output/circles.png
-.. image:: https://github.com/gouarin/splinart/demos/output/lines.png
+.. image:: https://github.com/gouarin/splinart/blob/master/demos/output/circles.png
+.. image:: https://github.com/gouarin/splinart/blob/master/demos/output/lines.png
 
 If you want to install splinart::
 

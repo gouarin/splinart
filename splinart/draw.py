@@ -65,7 +65,7 @@ def save_img(img, path, filename):
         The file name with the png extension.
 
     """
-    plt.imshow(img)
+    plt.imshow((img * 255).astype(np.uint8))
     plt.axes().set_aspect('equal')
     plt.axis('off')
 
@@ -85,7 +85,7 @@ def show_img(img):
         The image to save.
 
     """
-    plt.imshow(img)
+    plt.imshow((img * 255).astype(np.uint8))
     plt.axes().set_aspect('equal')
     plt.axis('off')
     plt.show()

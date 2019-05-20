@@ -86,6 +86,6 @@ def show_img(img):
 
     """
     plt.imshow(img)
-    plt.axes().set_aspect('equal')
+    # plt.axes().set_aspect('equal')
     plt.axis('off')
     plt.show()

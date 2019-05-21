@@ -1,3 +1,4 @@
+import sys
 import splinart as spl
 import numpy as np
 import pytest

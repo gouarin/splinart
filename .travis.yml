@@ -18,7 +18,7 @@ before_install:
   if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
     mkdir $HOME/.matplotlib;
-    echo "backend : TkAgg" >> $HOME/.matplotlib/matplotlibrc
+    echo "backend : Agg" >> $HOME/.matplotlib/matplotlibrc
   fi
 - |
   if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then 
@@ -42,7 +42,10 @@ install:
 - python setup.py install
 script:
 - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
-- pytest --nbval notebooks
+- |
+  if [ ${PYVER} != "2.7" ]; then
+    pytest --nbval notebooks
+  fi;
 - cd tests;pytest --mpl --cov=splinart
 - |
   if [[ $TRAVIS_TAG ]]; then

@@ -38,7 +38,7 @@ install:
   fi;
 - conda create -q -n splinart-env python=${PYVER}
 - source activate splinart-env
-- pip install -r requirements.txt
+- travis_wait pip install -r requirements.txt
 - python setup.py install
 script:
 - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart

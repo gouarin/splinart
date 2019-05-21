@@ -5,4 +5,5 @@ dependencies:
   - notebook
   - sphinx
   - nbsphinx
-  - nbsphinx-link
+  - pip:
+    - nbsphinx-link

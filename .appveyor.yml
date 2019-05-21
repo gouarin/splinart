@@ -29,11 +29,11 @@ environment:
       CONDA_PY: "3.6"
       CONDA_INSTALL_LOCN: "C:\\Miniconda36-x64"
       CONDA_BUILDS:  C:\\Miniconda36-x64\conda-bld\win-64
-
-    # For 32 bit builds there are no compiler issues, let Obvious-CI
-    # handle the matrix.
-    # - TARGET_ARCH: "x86"
-    #   PYTHON_BUILD_RESTRICTIONS: "2.7*|>=3.4"
+    - TARGET_ARCH: "x64"
+      PYTHON_BUILD_RESTRICTIONS: "3.7*"
+      CONDA_PY: "3.7"
+      CONDA_INSTALL_LOCN: "C:\\Miniconda37-x64"
+      CONDA_BUILDS:  C:\\Miniconda37-x64\conda-bld\win-64
 
 # We always use a 64-bit machine, but can build x86 distributions
 # with the TARGET_ARCH variable.
@@ -50,7 +50,7 @@ install:
     - cmd: conda config --set always_yes true
     - cmd: conda update --quiet conda
 
-    - cmd: conda install --quiet jinja2 conda-build=2 anaconda-client
+    - cmd: conda install --quiet jinja2 conda-build anaconda-client
     # These installs are needed on windows but not other platforms.
     - cmd: conda update -q conda
     - cmd: conda create --yes -n splinart_env python=%CONDA_PY%
@@ -80,5 +80,4 @@ on_success:
     - set /P BUILT_PACKAGE=<to_upload.txt
     - echo %BUILT_PACKAGE%
     # If this build is because of a tag make the conda package and upload it.
-    #- cmd: if "%APPVEYOR_REPO_TAG%"=="true" anaconda -t %BINSTAR_TOKEN% upload -u astropy %BUILT_PACKAGE%    
-    - cmd: anaconda -t %condatoken% upload --force %BUILT_PACKAGE%
+    - cmd: if "%APPVEYOR_REPO_TAG%"=="true" anaconda -t %condatoken% upload --force %BUILT_PACKAGE%

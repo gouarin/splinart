@@ -5,6 +5,7 @@ env:
   - PYVER="3.4"
   - PYVER="3.5"
   - PYVER="3.6"
+  - PYVER="3.7"
   global:
   - PROJECT_NAME=splinart
   - GITHUB_REPO_NAME=gouarin/splinart

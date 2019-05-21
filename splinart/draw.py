@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from .color import DEFAULT_COLOR
 
+# pylint: disable=assignment-from-no-return
 def draw_pixel(img, xs, ys, scale_color=.0005,
                color=DEFAULT_COLOR):
     """

@@ -1,6 +1,5 @@
 numpy
 matplotlib
-freetype
 six
 pytest
 pylint

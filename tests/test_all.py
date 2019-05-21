@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 @pytest.mark.long
-@pytest.mark.mpl_image_compare
+@pytest.mark.mpl_image_compare(remove_text=True)
 def test_circle_case():
 
     np.random.seed(42)

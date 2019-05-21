@@ -53,8 +53,7 @@ install:
     - cmd: conda install --quiet jinja2 conda-build=2 anaconda-client
     # These installs are needed on windows but not other platforms.
     - cmd: conda install patch psutil
-    - cmd: conda install pyqt>=5
-    - cmd: conda install --file requirements.txt -c conda-forge
+    - cmd: pip install -r requirements.txt
 
 # Skip .NET project specific build phase.
 build: off

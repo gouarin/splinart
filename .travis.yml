@@ -38,7 +38,7 @@ install:
   fi;
 - conda create -q -n splinart-env python=${PYVER}
 - source activate splinart-env
-- conda install --file requirements.txt -c conda-forge
+- pip install -r requirements.txt
 - python setup.py install
 script:
 - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart

@@ -1,6 +1,6 @@
 numpy
-matplotlib >=3.0,<3.1
-freetype >=2.9,<2.10
+matplotlib
+freetype
 six
 pytest
 pylint

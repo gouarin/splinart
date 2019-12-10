@@ -66,9 +66,10 @@ def save_img(img, path, filename):
         The file name with the png extension.
 
     """
-    plt.imshow(img)
-    plt.axes().set_aspect('equal')
-    plt.axis('off')
+    fig, ax = plt.subplots()
+    ax.imshow(img)
+    ax.set_aspect('equal')
+    ax.axis('off')
 
     if not os.path.exists(path):
         os.makedirs(path)
@@ -86,7 +87,8 @@ def show_img(img):
         The image to save.
 
     """
-    plt.imshow(img)
-    # plt.axes().set_aspect('equal')
-    plt.axis('off')
+    fig, ax = plt.subplots()
+    ax.imshow(img)
+    # ax.set_aspect('equal')
+    ax.axis('off')
     plt.show()

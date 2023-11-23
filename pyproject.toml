@@ -51,3 +51,9 @@ version = { attr = "splinart.version.__version__" }
 
 [tool.setuptools.packages.find]
 include = ["splinart*"]
+
+[tool.pytest.ini_options]
+markers = [
+    "long: marks tests as long (deselect with '-m \"not long\"')",
+    "serial",
+]

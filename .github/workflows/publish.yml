@@ -51,8 +51,17 @@ jobs:
         steps:
             - uses: actions/checkout@v1
 
-            - name: publish-to-conda
-              uses: maxibor/conda-package-publish-action@v1.1
-              with:
-                subDir: 'recipes'
-                AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}
+            - name: Install mamba
+              uses: mamba-org/provision-with-micromamba@main
+
+
+            - name: Install conda-build
+              shell: bash -l {0}
+              run: mamba install conda-build anaconda-client
+
+            - name: Build the recipe
+              shell: bash -l {0}
+              run: mamba build recipes
+
+            # subDir: 'recipes'
+            #     AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}

@@ -2,9 +2,7 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""
-Define basic shapes.
-"""
+"""Define basic shapes."""
 import numpy as np
 
 

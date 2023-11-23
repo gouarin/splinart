@@ -2,9 +2,7 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""
-Cubic spline
-"""
+"""Cubic spline."""
 import numpy as np
 
 

@@ -2,3 +2,4 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
+"""scripts module."""

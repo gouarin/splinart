@@ -2,10 +2,7 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""
-Material to update the image with given points
-and save or plot this image.
-"""
+"""Material to update the image with given points and save or plot this image."""
 import os
 import numpy as np
 import matplotlib.pyplot as plt

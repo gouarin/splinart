@@ -2,23 +2,17 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""
-cli
-"""
+"""cli of splinart."""
 import argparse
 import splinart as spl
 import numpy as np
 
 
 def circle(img):
-    """
-    circle
-    """
+    """circle."""
 
     def xs_func():
-        """
-        xs function
-        """
+        """Xs function."""
         nsamples = 500
         return (np.random.random() + 2 * np.pi * np.linspace(0, 1, nsamples)) % (
             2 * np.pi
@@ -29,14 +23,10 @@ def circle(img):
 
 
 def line(img):
-    """
-    line
-    """
+    """line."""
 
     def xs_func():
-        """
-        xs function
-        """
+        """Xs function."""
         nsamples = 500
         return 0.001 * np.random.random() + np.linspace(beg + 0.1, end - 0.1, nsamples)
 
@@ -46,9 +36,7 @@ def line(img):
 
 
 def main():
-    """
-    cli
-    """
+    """cli."""
     parser = argparse.ArgumentParser(description="Splinart generator")
     parser.add_argument(
         "-f",

@@ -51,16 +51,13 @@ jobs:
         steps:
             - uses: actions/checkout@v1
 
-            - name: Install mamba
-              uses: mamba-org/provision-with-micromamba@main
+            - uses: mamba-org/setup-micromamba@v1
               with:
-                extra-specs: |
+                environment-name: build-env
+                create-args: >-
                   python=3.10
-                cache-env: true
-
-            - name: Install conda-build
-              shell: bash -l {0}
-              run: mamba install conda-build anaconda-client
+                  conda-build
+                  anaconda-client
 
             - name: Build the recipe
               shell: bash -l {0}

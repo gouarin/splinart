@@ -2,17 +2,13 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""
-Material to update the output image using a cunbic spline equation.
-"""
-from __future__ import print_function, division, absolute_import
-
+"""Material to update the output image using a cunbic spline equation."""
 import numpy as np
-from six.moves import range
 
 from .spline import spline, splint
 from .draw import draw_pixel
 from .color import DEFAULT_COLOR
+
 
 def update_path(path, periodic=False, scale_value=0.00001):
     """
@@ -26,7 +22,6 @@ def update_path(path, periodic=False, scale_value=0.00001):
 
     Parameters
     ----------
-
     path : np.ndarray
         The y coordinate of the cubic spline.
 
@@ -39,29 +34,32 @@ def update_path(path, periodic=False, scale_value=0.00001):
 
     """
     n = path.shape[0]
-    scale = np.arange(n)*scale_value
-    radius = 1.0-2.0*np.random.random(n)
-    noise = radius*scale
-    phi = np.random.random(n)*2*np.pi
+    scale = np.arange(n) * scale_value
+    radius = 1.0 - 2.0 * np.random.random(n)
+    noise = radius * scale
+    phi = np.random.random(n) * 2 * np.pi
     rnd = np.c_[np.cos(phi), np.sin(phi)]
-    path += rnd*noise[:, np.newaxis]
+    path += rnd * noise[:, np.newaxis]
     if periodic:
         path[-1] = path[0]
 
-# pylint: disable=too-many-arguments
-def update_img(img, path, xs_func,
-               x=None,
-               nrep=300,
-               periodic=True,
-               scale_color=.005,
-               color=DEFAULT_COLOR,
-               scale_value=.00001):
+
+def update_img(
+    img,
+    path,
+    xs_func,
+    x=None,
+    nrep=300,
+    periodic=True,
+    scale_color=0.005,
+    color=DEFAULT_COLOR,
+    scale_value=0.00001,
+):
     """
     Update the image using a cubic spline on a shape.
 
     Parameters
     ----------
-
     img : np.ndarray
         The output image.
 
@@ -93,7 +91,7 @@ def update_img(img, path, xs_func,
     scale_value : float
         Rescale the random radius (default value is 0.00001).
 
-    See also
+    See Also
     --------
     update_path
 
@@ -105,7 +103,7 @@ def update_img(img, path, xs_func,
     else:
         yspline = np.zeros(xspline.size)
 
-    for i in range(nrep):#pylint: disable=unused-variable
+    for i in range(nrep):
         if x is not None:
             yder2 = spline(x, path)
             xspline = xs_func()

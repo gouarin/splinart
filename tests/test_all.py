@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 @pytest.mark.skipif(sys.version_info < (3, 5), reason="requires python3.5 or higher")
 @pytest.mark.mpl_image_compare(remove_text=True)
 def test_circle_case():
-
     np.random.seed(42)
 
     img_size, channels = 1000, 4

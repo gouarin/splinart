@@ -61,7 +61,7 @@ jobs:
 
             - name: Build the recipe
               shell: bash -l {0}
-              run: micromamba build recipes
+              run: conda build recipes
 
             # subDir: 'recipes'
             #     AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}

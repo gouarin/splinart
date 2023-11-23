@@ -53,7 +53,10 @@ jobs:
 
             - name: Install mamba
               uses: mamba-org/provision-with-micromamba@main
-
+              with:
+                extra-specs: |
+                  python=3.10
+                cache-env: true
 
             - name: Install conda-build
               shell: bash -l {0}

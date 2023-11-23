@@ -1,9 +1,7 @@
 numpy
 matplotlib
-six
 pytest
-pylint
-pytest-pylint
+ruff
 pytest-cov
 pytest-mpl
 nbval

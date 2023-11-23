@@ -1,22 +1,24 @@
-{% set data = load_setup_py_data() %}
+{% set version = "0.2.0" %}
 
 package:
-  name: splinart
-  version: {{ data.get('version') }}
+  name: pylbm
+  version: {{ version }}
 
 source:
-  path: ../
+  git_url: https://github.com/pylbm/pylbm.git
+  git_rev: {{ version }}
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  script: "{{PYTHON}} -m pip install . --no-deps -vv"
+  noarch: python
 
 requirements:
   build:
-    - python
+    - python>=3.8
     - setuptools
   run:
-    - python
+    - python>=3.8
     - numpy
     - matplotlib
 
@@ -28,11 +30,8 @@ about:
   home: http://github.com/gouarin/splinart
   license: BSD
   license_family: BSD
-  license_file: ''
   summary: 'spline art generator'
   description: 'spline art generator'
-  doc_url: ''
-  dev_url: ''
 
 extra:
   recipe-maintainers: 'loic.gouarin@gmail.com'

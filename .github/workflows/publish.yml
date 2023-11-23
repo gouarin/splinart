@@ -1,0 +1,40 @@
+name: publish
+
+on:
+    pull_request:
+      branches: [main]
+
+# on: workflow_dispatch
+
+
+jobs:
+    make_sdist:
+        name: Make SDist
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build SDist
+              run: pipx run build --sdist
+
+            - uses: actions/upload-artifact@v3
+              with:
+                path: dist/*.tar.gz
+
+    mbuild_wheels:
+        name: Wheel on ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+          fail-fast: false
+          matrix:
+            os: [ubuntu-latest, windows-latest, macos-latest]
+
+        steps:
+          - uses: actions/checkout@v4
+
+          - uses: pypa/cibuildwheel@v2.16
+
+          - name: Upload wheels
+            uses: actions/upload-artifact@v3
+            with:
+              path: wheelhouse/*.whl

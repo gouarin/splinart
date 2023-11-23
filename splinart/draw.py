@@ -11,9 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from .color import DEFAULT_COLOR
 
-# pylint: disable=assignment-from-no-return
-def draw_pixel(img, xs, ys, scale_color=.0005,
-               color=DEFAULT_COLOR):
+
+def draw_pixel(img, xs, ys, scale_color=0.0005, color=DEFAULT_COLOR):
     """
     Add pixels on the image.
 
@@ -37,16 +36,17 @@ def draw_pixel(img, xs, ys, scale_color=.0005,
 
     """
     size = img.shape[0]
-    newxs = np.floor(xs*size)
+    newxs = np.floor(xs * size)
     xs_mask = np.logical_and(newxs >= 0, newxs < size)
-    newys = np.floor(ys*size)
+    newys = np.floor(ys * size)
     ys_mask = np.logical_and(newys >= 0, newys < size)
     mask = np.logical_and(xs_mask, ys_mask)
-    coords = np.asarray([newxs[mask], newys[mask]], dtype='i8')
-    img_color = np.asarray(color)*scale_color
+    coords = np.asarray([newxs[mask], newys[mask]], dtype="i8")
+    img_color = np.asarray(color) * scale_color
     pixels = img[coords[0, :], coords[1, :], :]
-    alpha = 1. - img_color[3]
-    img[coords[0, :], coords[1, :], :] = img_color + pixels*alpha
+    alpha = 1.0 - img_color[3]
+    img[coords[0, :], coords[1, :], :] = img_color + pixels * alpha
+
 
 def save_img(img, path, filename):
     """
@@ -66,13 +66,14 @@ def save_img(img, path, filename):
 
     """
     plt.imshow(img)
-    plt.axes().set_aspect('equal')
-    plt.axis('off')
+    plt.axes().set_aspect("equal")
+    plt.axis("off")
 
     if not os.path.exists(path):
         os.makedirs(path)
 
-    plt.savefig(path + '/' + filename, dpi=300, bbox_inches='tight')
+    plt.savefig(path + "/" + filename, dpi=300, bbox_inches="tight")
+
 
 def show_img(img):
     """
@@ -87,5 +88,5 @@ def show_img(img):
     """
     plt.imshow(img)
     # plt.axes().set_aspect('equal')
-    plt.axis('off')
+    plt.axis("off")
     plt.show()

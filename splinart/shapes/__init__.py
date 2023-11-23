@@ -6,3 +6,5 @@
 Shape package
 """
 from .base import line, circle
+
+__all__ = ["line", "circle"]

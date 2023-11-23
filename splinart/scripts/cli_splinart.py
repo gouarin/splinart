@@ -49,7 +49,6 @@ def main():
     """
     cli
     """
-
     parser = argparse.ArgumentParser(description="Splinart generator")
     parser.add_argument(
         "-f",

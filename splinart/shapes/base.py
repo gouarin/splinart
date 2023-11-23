@@ -40,7 +40,6 @@ def line(begin, end, ypos=0.5, npoints=50):
 
     Parameters
     ----------
-
     begin : float
         The left point of the line.
 

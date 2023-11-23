@@ -18,7 +18,6 @@ def draw_pixel(img, xs, ys, scale_color=0.0005, color=DEFAULT_COLOR):
 
     Parameters
     ----------
-
     img : np.ndarray
         The image where we add pixels.
 
@@ -54,7 +53,6 @@ def save_img(img, path, filename):
 
     Parameters
     ----------
-
     img : np.ndarray
         The image to save.
 
@@ -81,7 +79,6 @@ def show_img(img):
 
     Parameters
     ----------
-
     img : np.ndarray
         The image to save.
 

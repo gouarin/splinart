@@ -14,7 +14,6 @@ def spline(xs, ys):
 
     Parameters
     ----------
-
     xs : np.ndarray
         The x coordinate of the cubic spline.
 

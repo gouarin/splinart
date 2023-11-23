@@ -25,7 +25,7 @@ def splint(xs, ys, y2s, x, y):
     y
         The y coordinates of the sample.
 
-    See also
+    See Also
     --------
     splinart.spline.spline
 

@@ -57,3 +57,12 @@ markers = [
     "long: marks tests as long (deselect with '-m \"not long\"')",
     "serial",
 ]
+
+[tool.ruff.lint]
+extend-select = [
+    "UP", # pyupgrade
+    "D",  # pydocstyle
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

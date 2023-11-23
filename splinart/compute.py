@@ -24,7 +24,6 @@ def update_path(path, periodic=False, scale_value=0.00001):
 
     Parameters
     ----------
-
     path : np.ndarray
         The y coordinate of the cubic spline.
 
@@ -63,7 +62,6 @@ def update_img(
 
     Parameters
     ----------
-
     img : np.ndarray
         The output image.
 
@@ -95,7 +93,7 @@ def update_img(
     scale_value : float
         Rescale the random radius (default value is 0.00001).
 
-    See also
+    See Also
     --------
     update_path
 

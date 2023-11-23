@@ -1,0 +1,45 @@
+name: publish
+
+on:
+    release:
+      types: [created]
+
+# on: workflow_dispatch
+
+
+jobs:
+    make_sdist:
+        name: Make SDist and weel
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Install build
+              run: pip install build
+
+            - name: Build SDist
+              run: python -m build --sdist
+
+            - name: Build wheel
+              run: python -m build --wheel
+
+            - uses: actions/upload-artifact@v3
+              with:
+                path: dist/*
+
+    upload_on_pypi:
+        needs: [make_sdist]
+        environment: pypi
+        permissions:
+            id-token: write
+        runs-on: ubuntu-latest
+        # if: github.event_name == 'release' && github.event.action == 'published'
+        steps:
+            - uses: actions/download-artifact@v3
+              with:
+                name: artifact
+                path: dist
+
+            - uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                repository-url: https://test.pypi.org/legacy/

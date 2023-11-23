@@ -63,5 +63,9 @@ jobs:
               shell: bash -l {0}
               run: conda build recipes
 
+            - name: upload on conda
+              shell: bash -l {0}
+              run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --force /home/runner/micromamba/envs/build-env/conda-bld/*/splinart-*.tar.bz2
+
             # subDir: 'recipes'
             #     AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}

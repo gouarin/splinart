@@ -5,7 +5,6 @@
 """
 cli
 """
-from __future__ import print_function, division, absolute_import
 import argparse
 import splinart as spl
 import numpy as np

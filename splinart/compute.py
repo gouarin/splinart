@@ -5,10 +5,7 @@
 """
 Material to update the output image using a cunbic spline equation.
 """
-from __future__ import print_function, division, absolute_import
-
 import numpy as np
-from six.moves import range
 
 from .spline import spline, splint
 from .draw import draw_pixel

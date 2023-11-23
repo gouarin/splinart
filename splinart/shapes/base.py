@@ -5,7 +5,6 @@
 """
 Define basic shapes.
 """
-from __future__ import print_function, division, absolute_import
 import numpy as np
 
 def circle(center, radius, npoints=50):

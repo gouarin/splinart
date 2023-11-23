@@ -6,7 +6,6 @@
 Material to update the image with given points
 and save or plot this image.
 """
-from __future__ import print_function, division, absolute_import
 import os
 import numpy as np
 import matplotlib.pyplot as plt

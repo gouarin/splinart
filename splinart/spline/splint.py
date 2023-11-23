@@ -5,7 +5,6 @@
 """
 Integration of a cubic spline.
 """
-from __future__ import print_function, division, absolute_import
 import numpy as np
 
 def splint(xs, ys, y2s, x, y):

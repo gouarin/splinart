@@ -2,10 +2,7 @@ name: publish
 
 on:
     release:
-      types: [created]
-
-# on: workflow_dispatch
-
+      types: [published]
 
 jobs:
     make_sdist:
@@ -43,3 +40,25 @@ jobs:
             - uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 repository-url: https://test.pypi.org/legacy/
+
+    upload_on_conda:
+        needs: [make_sdist]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+
+            - uses: mamba-org/setup-micromamba@v1
+              with:
+                environment-name: build-env
+                create-args: >-
+                  python=3.10
+                  conda-build
+                  anaconda-client
+
+            - name: Build the recipe
+              shell: bash -l {0}
+              run: conda build recipes
+
+            - name: upload on conda
+              shell: bash -l {0}
+              run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload --force /home/runner/micromamba/envs/build-env/conda-bld/*/splinart-*.tar.bz2

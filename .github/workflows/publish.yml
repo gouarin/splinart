@@ -43,3 +43,15 @@ jobs:
             - uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 repository-url: https://test.pypi.org/legacy/
+
+    upload_on_conda:
+        needs: [make_sdist]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: publish-to-conda
+              uses: maxibor/conda-package-publish-action@v1.1
+              with:
+                subDir: 'recipes'
+                AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}

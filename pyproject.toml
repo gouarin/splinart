@@ -58,6 +58,9 @@ markers = [
     "serial",
 ]
 
+[tool.ruff]
+exclude = ["doc/conf.py"]
+
 [tool.ruff.lint]
 extend-select = [
     "UP", # pyupgrade

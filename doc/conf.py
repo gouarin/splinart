@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #
 # splinart documentation build configuration file, created by
 # sphinx-quickstart on Fri Nov 17 10:27:27 2017.
@@ -55,7 +54,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "splinart"
-copyright = "2017, Loic Gouarin"
+copyright = "2017-2023, Loic Gouarin"
 author = "Loic Gouarin"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -91,7 +90,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+html_theme = "pydata_sphinx_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

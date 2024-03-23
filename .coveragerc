@@ -1,5 +1,0 @@
-[run]
-branch = true
-source =
-    splinart
-omit = splinart/version.py

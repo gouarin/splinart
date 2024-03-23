@@ -1,38 +1,65 @@
-name: ci
-
+name: CI
 on:
+  push:
+    branches: [main, master]
+    tags: ["*"]
   pull_request:
-    branches: [main]
-
 jobs:
-  build:
+  test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        python-version: [3.8, 3.9, "3.10", 3.11,  3.12]
+        version:
+          - '1' # automatically expands to the latest stable 1.x release of Julia
+          - nightly
         os:
           - ubuntu-latest
-          - macos-latest
-          - windows-latest
-
+        arch:
+          - x64
+          - x86
+        include:
+          # test macOS and Windows with latest Julia only
+          - os: macOS-latest
+            arch: x64
+            version: 1
+          - os: windows-latest
+            arch: x64
+            version: 1
+          - os: windows-latest
+            arch: x86
+            version: 1
     steps:
       - uses: actions/checkout@v2
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - uses: julia-actions/setup-julia@v1
         with:
-          python-version: ${{ matrix.python-version }}
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+      - uses: actions/cache@v1
+        env:
+          cache-name: cache-artifacts
+        with:
+          path: ~/.julia/artifacts
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+      - uses: julia-actions/julia-processcoverage@v1
+      - uses: codecov/codecov-action@v2
+        with:
+          files: lcov.info
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Install splinart
-        shell: bash -l {0}
-        run: |
-          pip install .
-
-      - name: Test with pytest
-        shell: bash -l {0}
-        run: |
-          cd tests; pytest --mpl --cov=splinart
+    docs:
+      name: Documentation
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: julia-actions/julia-buildpkg@latest
+        - uses: julia-actions/julia-docdeploy@latest
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}

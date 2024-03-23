@@ -1,8 +1,0 @@
-numpy
-matplotlib
-pytest
-ruff
-pytest-cov
-pytest-mpl
-nbval
-codecov

@@ -3,9 +3,7 @@
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://pnavaro.github.io/Splinart.jl/stable)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://pnavaro.github.io/Splinart.jl/dev)
 [![GitHub Actions](https://github.com/pnavaro/Splinart.jl/workflows/Run%20tests/badge.svg)](https://github.com/pnavaro/Splinart.jl/actions?query=workflow%3ARun+tests)
-[![Codecov](https://codecov.io/gh/pnavaro/Splinart.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/JuliaTesting/Splinart.jl)
-[![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
-
+[![Codecov](https://codecov.io/gh/pnavaro/Splinart.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/pnavaro/Splinart.jl)
 
 Julia package used for a tutorial which explains how to do the Julia packaging and automate the process to distribute this package using github.
 

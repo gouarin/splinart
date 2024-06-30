@@ -59,7 +59,7 @@ markers = [
 ]
 
 [tool.ruff]
-exclude = ["doc/conf.py"]
+exclude = ["doc/conf.py", "tests"]
 
 [tool.ruff.lint]
 extend-select = [

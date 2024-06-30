@@ -44,7 +44,7 @@ with
 So we have :math:`n-2` linear equations to calculate the :math:`n` unknowns :math:`y''_i` for :math:`i = 1, \dots, n`. So we have to make a choice for the first and last values ​​and we will take them equal to zero. We can recognize the resolution of a system with a tridiagonal matrix. It is then easy to solve it by using the algorithm of Thomas which one recalls the principle
 
 .. math::
-    c'_i=\left\{ 
+    c'_i=\left\{
     \begin{array}{lr}
     \frac{ci}{b_i}&i=1\\
     \frac{c_i}{b_i-a_ic'_{i-1}}&i=2,\dots,n.
@@ -52,7 +52,7 @@ So we have :math:`n-2` linear equations to calculate the :math:`n` unknowns :mat
     \right.
 
 .. math::
-    d'_i=\left\{ 
+    d'_i=\left\{
     \begin{array}{lr}
     \frac{di}{b_i}&i=1\\
     \frac{d_i-a_id'_{i-1}}{b_i-a_ic'_{i-1}}&i=2,\dots,n.
@@ -66,4 +66,3 @@ The solution is then obtained by the formula
     y''_n = d'_n \\
     y''_i = d'_i-c'_iy''_{i+1} \qquad \text{pour} \qquad i=n-1,\dots,1.
     \end{array}
-

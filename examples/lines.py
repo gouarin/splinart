@@ -1,3 +1,5 @@
+"""Example of drawing lines with splinart."""
+
 import numpy as np
 import splinart as spl
 
@@ -17,6 +19,7 @@ for iy, y in enumerate(np.linspace(lo, up, 10)):
 
 
 def xs_func():
+    """Return a random path on the line."""
     nsamples = 500
     return 0.001 * np.random.random() + np.linspace(lo + 0.02, up - 0.02, nsamples)
 

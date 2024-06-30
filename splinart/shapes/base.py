@@ -3,6 +3,7 @@
 #
 # License: BSD 3 clause
 """Define basic shapes."""
+
 import numpy as np
 
 

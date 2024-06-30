@@ -3,12 +3,13 @@
 #
 # License: BSD 3 clause
 """Integration of a cubic spline."""
+
 import numpy as np
 
 
 def splint(xs, ys, y2s, x, y):
     """
-    Evaluate a sample on a cubic pline.
+    Evaluate a sample on a cubic spline.
 
     Parameters
     ----------

@@ -3,6 +3,7 @@
 #
 # License: BSD 3 clause
 """Spline package."""
+
 from .spline import spline
 from .splint import splint
 

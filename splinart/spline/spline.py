@@ -3,6 +3,7 @@
 #
 # License: BSD 3 clause
 """Cubic spline."""
+
 import numpy as np
 
 

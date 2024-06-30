@@ -3,13 +3,14 @@
 #
 # License: BSD 3 clause
 """cli of splinart."""
+
 import argparse
 import splinart as spl
 import numpy as np
 
 
 def circle(img):
-    """circle."""
+    """Circle."""
 
     def xs_func():
         """Xs function."""
@@ -23,7 +24,7 @@ def circle(img):
 
 
 def line(img):
-    """line."""
+    """Line."""
 
     def xs_func():
         """Xs function."""
@@ -36,7 +37,7 @@ def line(img):
 
 
 def main():
-    """cli."""
+    """Cli."""
     parser = argparse.ArgumentParser(description="Splinart generator")
     parser.add_argument(
         "-f",

@@ -1,3 +1,5 @@
+"""Example of drawing circles with splinart."""
+
 import numpy as np
 import splinart as spl
 
@@ -20,6 +22,7 @@ for i in range(nb_circles):
 
 
 def xs_func():
+    """Return a random path on the circle."""
     nsamples = 500
     return (np.random.random() + 2 * np.pi * np.linspace(0, 1, nsamples)) % (2 * np.pi)
 

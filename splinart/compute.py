@@ -3,6 +3,7 @@
 #
 # License: BSD 3 clause
 """Material to update the output image using a cunbic spline equation."""
+
 import numpy as np
 
 from .spline import spline, splint

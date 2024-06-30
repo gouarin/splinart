@@ -1,3 +1,5 @@
+"""Example of drawing a circle with splinart."""
+
 import numpy as np
 import splinart as spl
 
@@ -9,6 +11,7 @@ theta, path = spl.circle([0.5, 0.5], 0.3, npoints=40)
 
 
 def xs_func():
+    """Return a random path on the circle."""
     nsamples = 500
     return (np.random.random() + 2 * np.pi * np.linspace(0, 1, nsamples)) % (2 * np.pi)
 

@@ -1,3 +1,5 @@
+"""Example of a line path with random x values."""
+
 import numpy as np
 import splinart as spl
 
@@ -6,6 +8,7 @@ img = np.ones((img_size, img_size, channels), dtype=np.float32)
 
 
 def xs_func():
+    """Return a random path on the line."""
     nsamples = 500
     return 0.001 * np.random.random() + np.linspace(lo + 0.1, up - 0.1, nsamples)
 

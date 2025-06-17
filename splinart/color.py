@@ -4,4 +4,11 @@
 # License: BSD 3 clause
 """Define the default color of the output."""
 
-DEFAULT_COLOR = (0.0, 0.41568627450980394, 0.61960784313725492, 1.0)
+from typing import Tuple
+
+DEFAULT_COLOR: Tuple[float, float, float, float] = (
+    0.0,
+    0.41568627450980394,
+    0.61960784313725492,
+    1.0,
+)

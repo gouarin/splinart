@@ -25,11 +25,8 @@ def xs_func():
 
 
 for i in range(len(path)):
-    img1 = np.ones_like(img)
     spl.update_img(
-        img1, path[i], xs_func, nrep=1000, periodic=False, color=color_lines[i]
+        img, path[i], xs_func, nrep=1000, periodic=False, color=color_lines[i]
     )
-    mask = img1 < 1.0
-    img[mask] += img1[mask]
 
 spl.save_img(img, "./output", "lines.png")

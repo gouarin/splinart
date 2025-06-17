@@ -2,16 +2,22 @@
 #     Loic Gouarin <loic.gouarin@gmail.com>
 #
 # License: BSD 3 clause
-"""Material to update the output image using a cunbic spline equation."""
+"""Material to update the output image using a cubic spline equation."""
 
+from typing import Callable, Optional, Sequence
 import numpy as np
+from numpy.typing import NDArray
 
 from .spline import spline, splint
 from .draw import draw_pixel
 from .color import DEFAULT_COLOR
 
 
-def update_path(path, periodic=False, scale_value=0.00001):
+def update_path(
+    path: NDArray[np.floating],
+    periodic: bool = False,
+    scale_value: float = 0.00001,
+) -> None:
     """
     Update the path of the spline.
 
@@ -46,16 +52,16 @@ def update_path(path, periodic=False, scale_value=0.00001):
 
 
 def update_img(
-    img,
-    path,
-    xs_func,
-    x=None,
-    nrep=300,
-    periodic=True,
-    scale_color=0.005,
-    color=DEFAULT_COLOR,
-    scale_value=0.00001,
-):
+    img: NDArray[np.floating],
+    path: NDArray[np.floating],
+    xs_func: Callable[[], NDArray[np.floating]],
+    x: Optional[NDArray[np.floating]] = None,
+    nrep: int = 300,
+    periodic: bool = True,
+    scale_color: float = 0.005,
+    color: Sequence[float] = DEFAULT_COLOR,
+    scale_value: float = 0.00001,
+) -> None:
     """
     Update the image using a cubic spline on a shape.
 

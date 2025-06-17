@@ -4,10 +4,16 @@
 # License: BSD 3 clause
 """Define basic shapes."""
 
+from typing import List, Tuple, Union
 import numpy as np
+from numpy.typing import NDArray
 
 
-def circle(center, radius, npoints=50):
+def circle(
+    center: Union[List[float], Tuple[float, float], NDArray[np.floating]],
+    radius: float,
+    npoints: int = 50,
+) -> Tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Discretization of a circle.
 
@@ -33,7 +39,12 @@ def circle(center, radius, npoints=50):
     return theta, path
 
 
-def line(begin, end, ypos=0.5, npoints=50):
+def line(
+    begin: float,
+    end: float,
+    ypos: float = 0.5,
+    npoints: int = 50,
+) -> NDArray[np.floating]:
     """
     Discretization of a horizontal line.
 

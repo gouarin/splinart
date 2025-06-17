@@ -39,6 +39,18 @@ classifiers = [
 
 dependencies = ["numpy", "matplotlib"]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pytest-cov",
+    "pytest-mpl",
+    "nbval",
+    "codecov",
+    "mypy",
+    "types-requests",
+]
+
 [project.scripts]
 splinart = "splinart.scripts.cli_splinart:main"
 
@@ -69,3 +81,23 @@ extend-select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = ["matplotlib.*", "pytest.*"]
+ignore_missing_imports = true

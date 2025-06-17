@@ -5,12 +5,20 @@
 """Material to update the image with given points and save or plot this image."""
 
 import os
+from typing import Sequence
 import numpy as np
 import matplotlib.pyplot as plt
+from numpy.typing import NDArray
 from .color import DEFAULT_COLOR
 
 
-def draw_pixel(img, xs, ys, scale_color=0.0005, color=DEFAULT_COLOR):
+def draw_pixel(
+    img: NDArray[np.floating],
+    xs: NDArray[np.floating],
+    ys: NDArray[np.floating],
+    scale_color: float = 0.0005,
+    color: Sequence[float] = DEFAULT_COLOR,
+) -> None:
     """
     Add pixels on the image.
 
@@ -45,7 +53,7 @@ def draw_pixel(img, xs, ys, scale_color=0.0005, color=DEFAULT_COLOR):
     img[coords[0, :], coords[1, :], :] = img_color + pixels * alpha
 
 
-def save_img(img, path, filename):
+def save_img(img: NDArray[np.floating], path: str, filename: str) -> None:
     """
     Save the image in a png file.
 
@@ -62,7 +70,7 @@ def save_img(img, path, filename):
 
     """
     plt.imshow(img)
-    plt.axes().set_aspect("equal")
+    # plt.axes().set_aspect("equal")
     plt.axis("off")
 
     if not os.path.exists(path):
@@ -71,7 +79,7 @@ def save_img(img, path, filename):
     plt.savefig(path + "/" + filename, dpi=300, bbox_inches="tight")
 
 
-def show_img(img):
+def show_img(img: NDArray[np.floating]) -> None:
     """
     Plot the image using matplotlib.
 

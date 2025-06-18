@@ -11,7 +11,7 @@ splinart is a package used for a tutorial which explains how to do the Python pa
 
 And automate the process to distribute this package using github.
 
-The original idea of splinart is found on the great `invonvergent <http://inconvergent.net/>`_ website.
+The original idea of splinart is found on the great `inconvergent <http://inconvergent.net/>`_ website.
 
 .. image:: https://github.com/gouarin/splinart/blob/main/examples/output/circles.png
 .. image:: https://github.com/gouarin/splinart/blob/main/examples/output/lines.png

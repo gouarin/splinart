@@ -5,9 +5,16 @@
 """Integration of a cubic spline."""
 
 import numpy as np
+from numpy.typing import NDArray
 
 
-def splint(xs, ys, y2s, x, y):
+def splint(
+    xs: NDArray[np.floating],
+    ys: NDArray[np.floating],
+    y2s: NDArray[np.floating],
+    x: NDArray[np.floating],
+    y: NDArray[np.floating],
+) -> None:
     """
     Evaluate a sample on a cubic spline.
 

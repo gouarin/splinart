@@ -7,12 +7,13 @@
 import argparse
 import splinart as spl
 import numpy as np
+from numpy.typing import NDArray
 
 
-def circle(img):
+def circle(img: NDArray[np.floating]) -> None:
     """Circle."""
 
-    def xs_func():
+    def xs_func() -> NDArray[np.floating]:
         """Xs function."""
         nsamples = 500
         return (np.random.random() + 2 * np.pi * np.linspace(0, 1, nsamples)) % (
@@ -23,10 +24,10 @@ def circle(img):
     spl.update_img(img, path, xs_func, nrep=4000, x=theta, scale_value=0.00005)
 
 
-def line(img):
+def line(img: NDArray[np.floating]) -> None:
     """Line."""
 
-    def xs_func():
+    def xs_func() -> NDArray[np.floating]:
         """Xs function."""
         nsamples = 500
         return 0.001 * np.random.random() + np.linspace(beg + 0.1, end - 0.1, nsamples)
@@ -36,7 +37,7 @@ def line(img):
     spl.update_img(img, path, xs_func, nrep=1000, periodic=False)
 
 
-def main():
+def main() -> None:
     """Cli."""
     parser = argparse.ArgumentParser(description="Splinart generator")
     parser.add_argument(

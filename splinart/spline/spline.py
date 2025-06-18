@@ -5,9 +5,10 @@
 """Cubic spline."""
 
 import numpy as np
+from numpy.typing import NDArray
 
 
-def spline(xs, ys):
+def spline(xs: NDArray[np.floating], ys: NDArray[np.floating]) -> NDArray[np.floating]:
     """
     Return the second derivative of a cubic spline.
 
